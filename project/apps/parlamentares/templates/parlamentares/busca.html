@@ -14,23 +14,44 @@
           </div> 
         
           <div class="col-2">
-            <input class="btn btn-secondary ms-2" type="submit" value="Buscar" />
+            <input class="btn btn-primary ms-2" type="submit" value="Buscar" />
           </div>
           
       </div>
     </form>
     
+    {% if 'nome' in request.GET and not parlamentares %} 
+    <div class="row justify-content-center">
+      <div class="col text-center">
+      Nenhum parlamentar encontrado.
+      </div>
+    </div>
+    {% endif %}
     {% for parlamentar in parlamentares %}
       
-      <div class="row my-2" style="min-height:40px;">
-        <div class="col-2">
-          <img src="{{parlamentar.urlFoto}}" class="img-fluid foto-img shadow-sm">  
+      <div class="row my-2" style="min-height:200px;">
+        <div class="card p-3 bg-light shadow-sm">
+          <div class="row no-gutters">
+            <div class="col-auto position-relative">
+              <img src="{{parlamentar.urlFoto}}" class="img-fluid foto-img shadow-sm" width=100>  
+            </div>
+            <div class="col">
+              
+              <h4 class="card-title fs-6"><b>{{parlamentar.nome}}</b></h4>
+              <hr>
+              
+              <div>
+                <p class=" card-text m-0"><b>UF:</b> {{parlamentar.siglaUf}}</p>
+                <p class="card-text m-0"><b>Partido:</b> {{parlamentar.siglaPartido}}</p>
+              </div>
+              
+              <a href="{% url 'parlamentares:detail' parlamentar.id %}" class="stretched-link"></a>
+
+            </div>
+          </div>
         </div>
-        <div class="col-10">
-          Nome: {{parlamentar.nome}}
-          UF: {{parlamentar.siglaUf}}
-          Partido: {{parlamentar.siglaPartido}}
-        </div>
+
+        
       </div>
     {% endfor %}
 

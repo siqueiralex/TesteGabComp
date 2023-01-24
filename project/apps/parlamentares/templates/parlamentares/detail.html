@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load shared_components %}
+
+
+{% block body %}
+<div class="row justify-content-center mt-4">
+  <div class="col-8">
+  
+  {% if request.path in request.META.HTTP_REFERER %} 
+    <a href="{% url 'parlamentares:busca' %}" class="btn btn-secondary">Voltar</a>
+  {% else %}
+    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Voltar</a>
+  {% endif %}
+
+    <div class="row my-2" style="min-height:40px;">
+      
+      <div class="card p-3 bg-light shadow-sm">
+        <div class="row no-gutters">
+          <div class="col-auto position-relative">
+            <img src="{{dados_parlamentar.ultimoStatus.urlFoto}}" class="img-fluid shadow-sm" width="250">  
+          </div>
+          <div class="col">
+            
+            <h3 class="card-title fs-5"><b>{{dados_parlamentar.nomeCivil|default:""}}</b></h3>
+            <p class="card-text m-0">Data Nascimento: {{dados_parlamentar.dataNascimento|default:""}}</p>
+            <hr>
+            
+            <div>
+              <p class="card-text m-0"><b>Nome Eleitoral:</b> {{dados_parlamentar.ultimoStatus.nomeEleitoral|default:""}}</p>
+              <p class=" card-text m-0"><b>UF:</b> {{dados_parlamentar.ultimoStatus.siglaUf|default:""}}</p>
+              <p class="card-text m-0"><b>Partido:</b> {{dados_parlamentar.ultimoStatus.siglaPartido|default:""}}</p>
+              <p class="card-text m-0"><b>Situação:</b> {{dados_parlamentar.ultimoStatus.situacao|default:""}}</p>
+              <p class="card-text m-0"><b>Condição Eleitoral:</b> {{dados_parlamentar.ultimoStatus.condicaoEleitoral|default:""}}</p>
+
+              <br>
+              <p class="card-text m-0"><b>Gabinete:</b>
+                Prédio: {{dados_parlamentar.ultimoStatus.gabinete.predio|default:""}},
+                Sala: {{dados_parlamentar.ultimoStatus.gabinete.sala|default:""}}, 
+                Andar: {{dados_parlamentar.ultimoStatus.gabinete.andar|default:""}}.
+                Telefone: {{dados_parlamentar.ultimoStatus.gabinete.telefone|default:""}}
+              </p>
+              <br>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card p-3 bg-light shadow-sm">
+          <h3 class="card-title fs-3"><b>Curriculo</b></h3>
+          <div>
+            {% for ocupacao in curriculo %}
+              <hr>
+              <h3 class="card-title fs-5 mb-0"><b>{{ocupacao.titulo}}</b></h3>
+              {% if ocupacao.entidadePais%}
+                {{ocupacao.entidadePais|default:""}}/{{ocupacao.entidadeUF|default:""}}
+              {% endif %}
+              {% if ocupacao.entidade%}
+              <p class="card-text mt-1 mb-0"><b>Entidade:</b> {{ocupacao.entidade|default:""}}</p>
+              {% endif %}
+              <p class="card-text m-0">{% if ocupacao.anoInicio %}<b>Início:</b> {{ocupacao.anoInicio|default:""}} {% endif %}{% if ocupacao.anoFim %}<b>Fim:</b> {{ocupacao.anoFim|default:""}}{% endif %}</p>
+      
+            {% endfor %}  
+          </div>
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

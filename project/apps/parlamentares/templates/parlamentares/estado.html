@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load shared_components %}
+
+{% block body %}
+<div class="row justify-content-center mt-4">
+  <div class="col-8">
+  <a href="{% url 'parlamentares:estados' %}" class="btn btn-secondary">Voltar</a>
+  <div class='row my-3'>
+    <h3 class='fs-4 text-center'> Deputados do Estado: <b class='fs-2'>{{uf_nome}}</b></h3>
+  </div>
+{% for parlamentar in parlamentares %}
+      
+<div class="row my-2" style="min-height:200px;">
+  <div class="card p-3 bg-light shadow-sm">
+    <div class="row no-gutters">
+      <div class="col-auto position-relative">
+        <img src="{{parlamentar.urlFoto}}" class="img-fluid foto-img shadow-sm" width=100>  
+      </div>
+      <div class="col">
+        
+        <h4 class="card-title fs-6"><b>{{parlamentar.nome}}</b></h4>
+        <hr>
+        
+        <div>
+          <p class=" card-text m-0"><b>UF:</b> {{parlamentar.siglaUf}}</p>
+          <p class="card-text m-0"><b>Partido:</b> {{parlamentar.siglaPartido}}</p>
+        </div>
+        
+        <a href="{% url 'parlamentares:detail' parlamentar.id %}" class="stretched-link"></a>
+
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
