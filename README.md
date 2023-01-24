@@ -1,7 +1,7 @@
 # Projeto de Teste Gabinete Compartilhado
 
 
-## O projeto se encontra rodando neste [link](http://34.138.76.104/ "Deploy") via Google Cloud Computing
+## O projeto se encontra rodando neste [link](http://34.138.76.104/ "Deploy") (deploy no Google Cloud Computing)
 
 ### Para rodar Localmente com Docker:
 1. Clone o projeto
