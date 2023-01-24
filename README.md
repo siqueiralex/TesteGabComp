@@ -1,1 +1,1 @@
-# Projeto de teste do Gabinete Compartilhado
+# Projeto de Teste Gabinete Compartilhado
