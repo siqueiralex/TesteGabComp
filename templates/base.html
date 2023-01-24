@@ -1,0 +1,145 @@
+{% load static %}
+{% load shared_components %}
+
+{% comment %} Baseado no exemplo: https://www.kite.com/blog/python/django-templates-best-practices/ {% endcomment %}
+
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% block page_meta %}
+        {% endblock %}
+
+
+        {% block css_imports %}
+            <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet" type="text/css">
+            <link href="{% static 'css/base.css'%}" rel="stylesheet" type="text/css">
+        {% endblock %}
+
+        {% components_css %}
+
+        {% autoescape off %}
+            {% block css %}{% endblock %}
+        {% endautoescape %}
+
+        {% block extra_head %}
+            {# Extra header stuff (scripts, styles, metadata, etc) #}
+        {% endblock %}
+
+        <title>{% block page_title %}Teste Gabinete Compartilhado{% endblock %}</title>
+    </head>
+    <body>
+
+        {% comment %} Sidebar copiado do exemplo: https://www.codeply.com/p/J7fUOhLOy9 {% endcomment %}
+        <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="true">
+            <div class="offcanvas-body px-0 py-1">
+                <i class="menu-sanduiche navbar-brand fa-solid fa-bars" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button" height="25px"></i>
+                <div class="menu-linha"></div>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+                     
+                        {% MenuLateral request=request %}{% /MenuLateral %}
+                    
+                </ul>
+            </div>
+        </div>
+
+
+        <nav class="navbar">
+            <div class="container-fluid">
+                <i class="menu-sanduiche navbar-brand fa-solid fa-bars" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button" height="25px"></i>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">
+                           Teste Gabinete Compartilhado
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+
+        <main>
+            <div class="container-sm content-wrapper">
+                <div class="row">
+                    <div class="col-12 messages">
+
+
+                
+
+
+
+                    </div>
+                    <div class="col-12">
+                        {% block breadcrumb %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        {% block submenu %}
+                        {% endblock %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        {% block body %}
+
+                        {% endblock %}
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+
+        <footer>
+            
+
+        </footer>
+
+        {# Modal HTML #}
+        {% block modals %}
+
+        {% endblock %}
+
+        {# Vendor javascript #}
+        {% block js_imports %}
+            <script src="{% static 'js/popper.min.js'%}"></script>
+            <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+            <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+            <script src="{% static 'js/jquery.min.js'%}"></script>
+        {% endblock %}
+        {% components_js %}
+
+        {# Shared data for javascript #}
+        <script type="text/javascript">
+            window._sharedData = {
+                {% autoescape off %}
+                    {% block shared_data %}
+                        'DEBUG': {% if debug %}true{% else %}false{% endif %},
+                    {% endblock %}
+                {% endautoescape %}
+            }
+
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl)
+            })
+        </script>
+
+        {# Page javascript #}
+        {% autoescape off %}
+            {% block js %}
+            {% endblock %}
+        {% endautoescape %}
+    </body>
+</html>
+

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load shared_components %}
+
+
+{% block body %}
+<div class="row justify-content-center mt-4">
+  <div class="col-8">
+    
+    <form action="" method="get">
+      <div class="row mb-1 g-1 justify-content-center align-items-center">
+        
+          <div class="col-6">
+            <input type="text" name="nome" id="id_nome" style="width:400px;" class="form-control w-100" placeholder="Escreva o nome do parlamentar">
+          </div> 
+        
+          <div class="col-2">
+            <input class="btn btn-secondary ms-2  p-2 btm-sm" type="submit" value="Buscar" />
+          </div>
+          
+      </div>
+    </form>
+    
+    {% for parlamentar in parlamentares %}
+      
+      <div class="row my-2" style="min-height:40px;">
+        <div class="col-2">
+          <img src="{{parlamentar.urlFoto}}" class="img-fluid foto-img shadow-sm">  
+        </div>
+        <div class="col-10">
+          Nome: {{parlamentar.nome}}
+          UF: {{parlamentar.siglaUf}}
+          Partido: {{parlamentar.siglaPartido}}
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+{% endblock %}
