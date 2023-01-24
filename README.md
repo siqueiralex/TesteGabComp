@@ -1,6 +1,10 @@
 # Projeto de Teste Gabinete Compartilhado
 
-## Rodando o projeto Localmente
+
+## O projeto se encontra rodando neste [link](http://34.138.76.104/ "Deploy") via Google Cloud Computing
+
+## Rodando o projeto Localmente com Docker:
 1. Clone o projeto
 2. Crie um arquivo com as variáveis de ambiente de nome `.env` utilizando o exemplo `.env.example` 
-4. Rode o comando: `docker-compose --env-file ./.env up`
+3. Entre na pasta `docker`
+4. Rode o comando: `docker-compose up`
