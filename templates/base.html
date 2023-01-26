@@ -1,5 +1,4 @@
 {% load static %}
-{% load shared_components %}
 
 {% comment %} Baseado no exemplo: https://www.kite.com/blog/python/django-templates-best-practices/ {% endcomment %}
 
@@ -17,7 +16,6 @@
             <link href="{% static 'css/base.css'%}" rel="stylesheet" type="text/css">
         {% endblock %}
 
-        {% components_css %}
 
         {% autoescape off %}
             {% block css %}{% endblock %}
@@ -31,45 +29,32 @@
     </head>
     <body>
 
-        {% comment %} Sidebar copiado do exemplo: https://www.codeply.com/p/J7fUOhLOy9 {% endcomment %}
-        <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="true">
-            <div class="offcanvas-body px-0 py-1">
-                <i class="menu-sanduiche navbar-brand fa-solid fa-bars" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button" height="25px"></i>
-                <div class="menu-linha"></div>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
-                     
-                        {% MenuLateral request=request %}{% /MenuLateral %}
-                    
-                </ul>
-            </div>
-        </div>
-
-
-        
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand text-white" href="/">Teste Gabinete Compartilhado</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="/">Teste Gabinete Compartilhado</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a class="nav-link text-white" href="{% url 'parlamentares:busca' %}">Buscar Palamentares</a>
-                  <a class="nav-link text-white" href="{% url 'parlamentares:estados' %}">Parlamentares por Estado</a>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url 'parlamentares:busca' %}">Buscar Palamentares</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url 'parlamentares:estados' %}">Parlamentares por Estado</a>
+                    </li>
+                </ul>
                 </div>
-              </div>
             </div>
-          </nav>
+        </nav>
 
 
 
         <main>
-            <div class="container-sm content-wrapper">
+            <div class="container-sm content-wrapper px-sm-10">
                 <div class="row justify-content-center">
-                    <div class="col-8 messages">
 
-
+                    <div class="col-12 messages">
                         {% if messages %}
                             {% for message in messages %}
                                 <div class="alert {% if message.tags %} alert-{{ message.tags|parse_bs_alert }}{% endif %} alert-dismissible">
@@ -78,23 +63,18 @@
                                 </div>
                             {% endfor %}
                         {% endif %}
-
-
-
                     </div>
+
                     <div class="col-12">
                         {% block breadcrumb %}
                         {% endblock %}
                     </div>
-                </div>
-                <div class="row">
+
                     <div class="col-12">
                         {% block submenu %}
                         {% endblock %}
                     </div>
-                </div>
 
-                <div class="row">
                     <div class="col-12">
                         {% block body %}
 
@@ -119,11 +99,10 @@
         {# Vendor javascript #}
         {% block js_imports %}
             <script src="{% static 'js/popper.min.js'%}"></script>
-            <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
             <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
             <script src="{% static 'js/jquery.min.js'%}"></script>
         {% endblock %}
-        {% components_js %}
+    
 
         {# Shared data for javascript #}
         <script type="text/javascript">

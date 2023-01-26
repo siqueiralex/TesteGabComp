@@ -38,11 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django_component",
-    "shared_components",
     "core",
     "parlamentares",
-    "fontawesomefree",
 ]
 
 MIDDLEWARE = [
@@ -68,7 +65,6 @@ TEMPLATES = [
             ],
             "builtins": [
                 "django.templatetags.static",
-                "django_component.templatetags",
                 "core.templatetags.custom_tags",
             ],
         },

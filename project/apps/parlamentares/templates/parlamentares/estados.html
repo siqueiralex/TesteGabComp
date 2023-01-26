@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load shared_components %}
 
 {% block css %}
 <style type="text/css">
@@ -110,8 +109,11 @@
 
 {% block body %}
 <div class="row justify-content-center mt-4">
+    <div class='row my-3'>
+      <h3 class='fs-4 text-center'> Selecione o Estado: <b class='fs-2'>{{uf_nome}}</b></h3>
+    </div>
   
-    <ul class="col-12" id="map" class="text-center">
+    <ul class="col-4" id="map" class="text-center">
 			<li id="crs" estado="rs"><a href="/estados/rs" id="rs" title="RS"><img src="/static/img/null.gif" alt="RS" /></a></li>
 			<li id="csc" estado="sc"><a href="/estados/sc" id="sc" title="SC"><img src="/static/img/null.gif" alt="SC" /></a></li>
 			<li id="cpr" estado="pr"><a href="/estados/pr" id="pr" title="PR"><img src="/static/img/null.gif" alt="PR" /></a></li>

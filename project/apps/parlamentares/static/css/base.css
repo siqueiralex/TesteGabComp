@@ -126,22 +126,7 @@ ul {
 }
 
 .navbar {
-  background-color: rgb(20, 42, 60);
-  height: 85px;
-}
-
-.navbar-user-info {
-  position: absolute;
-  z-index: 99999;
-  right: 10px;
-  bottom: 5px;
-  font-size: 0.9em;
-  color: #fefefe;
-  transition: transform 0.1s ease-out;
-}
-
-.navbar-user-info:hover {
-  transform: scale(1.03);
+  min-height: 85px;
 }
 
 .menu-sanduiche {
@@ -166,9 +151,6 @@ ul {
   color: white;
 }
 
-.form-login-nav {
-  min-width: 300px;
-}
 
 .menu-item {
   font-weight: 500;
